@@ -10,12 +10,20 @@ RUN pip3 install --no-cache-dir huggingface_hub
 
 # Download model files in chunks
 RUN for i in $(seq -w 1 44); do \
-    python3 -c "import sys; from huggingface_hub import hf_hub_download; \
-    try: \
-        hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', f'model-{sys.argv[1]}-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False) \
-    except Exception as e: \
-        print(f'Error downloading chunk {sys.argv[1]}: {e}', file=sys.stderr) \
-        sys.exit(1)" "$i" || exit 1; \
+    python3 <<EOF || exit 1 \
+import sys \
+from huggingface_hub import hf_hub_download \
+\
+try: \
+    hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', \
+                    f'model-{sys.argv[1]}-of-00044.safetensors', \
+                    local_dir='/model', \
+                    local_dir_use_symlinks=False) \
+except Exception as e: \
+    print(f'Error downloading chunk {sys.argv[1]}: {e}', file=sys.stderr) \
+    sys.exit(1) \
+EOF \
+    "$i"; \
 done
 
 # Stage 2: Final image
