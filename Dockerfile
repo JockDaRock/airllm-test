@@ -10,8 +10,8 @@ RUN pip3 install --no-cache-dir huggingface_hub
 
 # Download model files in chunks
 RUN for i in $(seq -w 1 44); do \
-        python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', f'model-000{i}-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)" ; \
-    done
+    python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', f'model-000{i}-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)" ; \
+done
 
 # Stage 2: Final image
 FROM nvidia/cuda:11.8.0-base-ubuntu22.04
