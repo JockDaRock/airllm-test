@@ -1,5 +1,4 @@
-
-# Stage 1: Download and prepare the model
+# Stage 1: Download model
 FROM nvidia/cuda:11.8.0-base-ubuntu22.04 as model_downloader
 
 WORKDIR /model
@@ -8,22 +7,51 @@ RUN apt-get update && apt-get install -y python3 python3-pip && rm -rf /var/lib/
 
 RUN pip3 install --no-cache-dir huggingface_hub
 
-# Download model files in chunks
-RUN for i in $(seq -w 1 44); do \
-    python3 <<EOF \
-import sys
-from huggingface_hub import hf_hub_download
-
-try:
-    hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 
-                    f'model-{i:03d}-of-00044.safetensors', 
-                    local_dir='/model', 
-                    local_dir_use_symlinks=False)
-except Exception as e:
-    print(f'Error downloading chunk {i:03d}: {e}', file=sys.stderr)
-    sys.exit(1)
-EOF \
-done \
+# Download each safetensor file in a separate layer
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00001-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00002-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00003-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00004-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00005-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00006-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00007-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00008-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00009-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00010-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00011-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00012-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00013-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00014-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00015-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00016-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00017-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00018-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00019-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00020-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00021-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00022-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00023-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00024-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00025-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00026-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00027-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00028-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00029-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00030-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00031-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00032-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00033-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00034-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00035-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00036-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00037-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00038-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00039-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00040-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00041-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00042-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00043-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
+RUN python3 -c "from huggingface_hub import hf_hub_download; hf_hub_download('unsloth/Meta-Llama-3.1-405B-Instruct-bnb-4bit', 'model-00044-of-00044.safetensors', local_dir='/model', local_dir_use_symlinks=False)"
 
 # Stage 2: Final image
 FROM nvidia/cuda:11.8.0-base-ubuntu22.04
