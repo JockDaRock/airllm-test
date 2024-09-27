@@ -72,7 +72,51 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 COPY app.py .
 
 # Copy the model files from the previous stage
-COPY --from=model_downloader /model /app/model
+COPY --from=model_downloader /model /app/model/model-00044-of-00001.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00002.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00003.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00004.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00005.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00006.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00007.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00008.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00009.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00010.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00011.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00012.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00013.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00014.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00015.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00016.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00017.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00018.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00019.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00020.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00021.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00022.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00023.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00024.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00025.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00026.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00027.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00028.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00029.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00030.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00031.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00032.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00033.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00034.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00035.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00036.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00037.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00038.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00039.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00040.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00041.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00042.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00043.safetensors
+COPY --from=model_downloader /model /app/model/model-00044-of-00044.safetensors
+
 
 # Expose the port the app runs on
 EXPOSE 8000
