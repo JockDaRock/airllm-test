@@ -121,6 +121,11 @@ COPY --from=model_downloader /model/model-00042-of-00044.safetensors /app/model/
 COPY --from=model_downloader /model/model-00043-of-00044.safetensors /app/model/model-00043-of-00044.safetensors
 COPY --from=model_downloader /model/model-00044-of-00044.safetensors /app/model/model-00044-of-00044.safetensors
 
+COPY --from=model_downloader /model/model.safetensors.index.json /app/model/model.safetensors.index.json
+COPY --from=model_downloader /model/special_tokens_map.json /app/model/special_tokens_map.json
+COPY --from=model_downloader /model/config.json /app/model/config.json
+COPY --from=model_downloader /model/generation_config.json /app/model/generation_config.json
+
 
 # Expose the port the app runs on
 EXPOSE 8000
