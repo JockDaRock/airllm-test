@@ -122,4 +122,5 @@ COPY --from=model_downloader /model/model-00044-of-00044.safetensors /app/model/
 EXPOSE 8000
 
 # Command to run the application
-CMD ["python3", "app.py"]
+# CMD ["python3", "app.py"]
+CMD ["/bin/bash"]
