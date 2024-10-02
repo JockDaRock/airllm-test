@@ -9,7 +9,7 @@ MAX_LENGTH = 128
 MODEL_PATH = "/app/model"
 
 # Load the model
-model = AutoModel.from_pretrained(MODEL_PATH)
+model = AutoModel.from_pretrained(MODEL_PATH, compression='4bit')
 
 @app.route('/v1/chat/completions', methods=['POST'])
 def chat_completions():

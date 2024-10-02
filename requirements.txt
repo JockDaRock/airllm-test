@@ -2,4 +2,4 @@
 flask==3.0.3
 airllm==2.11.0
 torch>=2.2.1,<2.3
-transformers==4.38.2
+transformers==4.43.3
